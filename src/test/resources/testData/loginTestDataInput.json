@@ -1,38 +1,26 @@
 [
   {
-    "account" : {
-      "username": "ioanacorinaoancea@gmail.com",
+    "account": {
+      "email": "ioanacorinaoancea@gmail.com",
       "password": "SnoopyDog12!"
     },
-    "loginError":""
+    "loginError": "",
+    "validationMessage": ""
   },
   {
-    "account" : {
-      "username": "myemail@email.com",
+    "account": {
+      "email": "myemail@email.com",
       "password": "Aasdfgh23!"
     },
-    "loginError":"Invalid username or password"
+    "loginError": "action,login,error",
+    "validationMessage": ""
   },
   {
-    "account" : {
-      "username": "ioanacorinaoancea@gmail.com",
+    "account": {
+      "email": "myemail@email.com",
       "password": ""
     },
-    "loginError":""
-  },
-  {
-    "account" : {
-      "username": "",
-      "password": ""
-    },
-    "loginError":""
-  },
-  {
-    "account" : {
-      "username": "",
-      "password": ""
-    },
-    "loginError":""
+    "loginError": "",
+    "validationMessage": "Please fill out this field."
   }
-
 ]

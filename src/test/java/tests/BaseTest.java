@@ -57,7 +57,4 @@ public class BaseTest {
         System.out.println("Open next URL: " + baseURL + path);
         driver.navigate().to(baseURL + path);
     }
-
-
-
 }

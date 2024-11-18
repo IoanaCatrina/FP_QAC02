@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class LoginPage extends BasePage {
 
@@ -20,6 +20,10 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//form[@class='cf']/a")
     private WebElement loginButton;
+
+    @FindBy(xpath = "//*[@id=\"account-logged\"]/p[contains(text(), 'Bine ati venit!')]")
+    private WebElement welcomeMessage;
+
 
     Actions actions;
 
@@ -65,4 +69,42 @@ public class LoginPage extends BasePage {
         this.submit();
     }
 
+    public boolean verifyLoginSuccessful() {
+        moveToAuthenticationButton();
+        waitUntilElementVisible(welcomeMessage);
+        System.out.println("Welcome message is displayed: " + welcomeMessage.getText());
+        return welcomeMessage.isDisplayed();
+    }
+
+    public String getErrorMessage() {
+        return driver.getCurrentUrl();
+    }
+
+    public boolean verifyLoginFailed(String error) {
+        String errorMessage = getErrorMessage();
+        return errorMessage.contains(error);
+    }
+
+//    public boolean verifyEmailRequired(String validationError) {
+//        String message = emailInput.getAttribute("validationMessage");
+//        System.out.println(message);
+//        return validationError.equals(message);
+//    }
+//
+//    public boolean verifyPasswordRequired(String validationError) {
+//        String message = passwordInput.getAttribute("validationMessage");
+//        System.out.println(message);
+//        return validationError.equals(message);
+//    }
+
+    public boolean verifyValidationMessage(String validationError) {
+        String message;
+        String text = emailInput.getAttribute("value");
+        if (text.isEmpty()) {
+            message = emailInput.getAttribute("validationMessage");
+        } else {
+            message = passwordInput.getAttribute("validationMessage");
+        }
+        return validationError.equals(message);
+    }
 }

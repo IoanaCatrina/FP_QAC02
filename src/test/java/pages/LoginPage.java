@@ -24,7 +24,6 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"account-logged\"]/p[contains(text(), 'Bine ati venit!')]")
     private WebElement welcomeMessage;
 
-
     Actions actions;
 
     public LoginPage(WebDriver driver) {
@@ -63,6 +62,7 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String email, String password) {
+        this.authenticationButtonDisplayed();
         this.moveToAuthenticationButton();
         this.enterEmail(email);
         this.enterPassword(password);

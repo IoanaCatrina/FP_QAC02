@@ -1,0 +1,38 @@
+[
+  {
+    "account" : {
+      "username": "ioanacorinaoancea@gmail.com",
+      "password": "SnoopyDog12!"
+    },
+    "loginError":""
+  },
+  {
+    "account" : {
+      "username": "myemail@email.com",
+      "password": "Aasdfgh23!"
+    },
+    "loginError":"Invalid username or password"
+  },
+  {
+    "account" : {
+      "username": "ioanacorinaoancea@gmail.com",
+      "password": ""
+    },
+    "loginError":""
+  },
+  {
+    "account" : {
+      "username": "",
+      "password": ""
+    },
+    "loginError":""
+  },
+  {
+    "account" : {
+      "username": "",
+      "password": ""
+    },
+    "loginError":""
+  }
+
+]

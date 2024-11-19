@@ -17,7 +17,31 @@
   },
   {
     "account": {
-      "email": "myemail@email.com",
+      "email": "ioanacorinaoancea@gmail.com",
+      "password": "Snoopydog33!"
+    },
+    "loginError": "action,login,error",
+    "validationMessage": ""
+  },
+  {
+    "account": {
+      "email": "ioanacorinaoancea@gmail.com",
+      "password": ""
+    },
+    "loginError": "",
+    "validationMessage": "Please fill out this field."
+  },
+  {
+    "account": {
+      "email": "",
+      "password": "SnoopyDog12!"
+    },
+    "loginError": "",
+    "validationMessage": "Please fill out this field."
+  },
+  {
+    "account": {
+      "email": "",
       "password": ""
     },
     "loginError": "",

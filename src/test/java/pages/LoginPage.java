@@ -32,6 +32,14 @@ public class LoginPage extends BasePage {
         actions = new Actions(driver);
     }
 
+    public void login(String email, String password) {
+        this.authenticationButtonDisplayed();
+        this.moveToAuthenticationButton();
+        this.enterEmail(email);
+        this.enterPassword(password);
+        this.submit();
+    }
+
     public boolean authenticationButtonDisplayed() {
         waitUntilElementVisible(authenticationHoverButton);
         return authenticationHoverButton.isDisplayed();
@@ -61,14 +69,6 @@ public class LoginPage extends BasePage {
         loginButton.click();
     }
 
-    public void login(String email, String password) {
-        this.authenticationButtonDisplayed();
-        this.moveToAuthenticationButton();
-        this.enterEmail(email);
-        this.enterPassword(password);
-        this.submit();
-    }
-
     public boolean verifyLoginSuccessful() {
         moveToAuthenticationButton();
         waitUntilElementVisible(welcomeMessage);
@@ -84,18 +84,6 @@ public class LoginPage extends BasePage {
         String errorMessage = getErrorMessage();
         return errorMessage.contains(error);
     }
-
-//    public boolean verifyEmailRequired(String validationError) {
-//        String message = emailInput.getAttribute("validationMessage");
-//        System.out.println(message);
-//        return validationError.equals(message);
-//    }
-//
-//    public boolean verifyPasswordRequired(String validationError) {
-//        String message = passwordInput.getAttribute("validationMessage");
-//        System.out.println(message);
-//        return validationError.equals(message);
-//    }
 
     public boolean verifyValidationMessage(String validationError) {
         String message;

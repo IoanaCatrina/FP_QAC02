@@ -1,13 +1,14 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationPage extends BasePage{
+public class RegistrationPage extends BasePage {
 
-    @FindBy(xpath = "//h1[contains(text(), 'Cont nou)]")
+    @FindBy(xpath = "//*[@id = 'template-register']//h1[contains(text(), 'Cont nou')]")
     private WebElement pageIdentifier;
 
     @FindBy(id = "last_name")
@@ -22,7 +23,7 @@ public class RegistrationPage extends BasePage{
     @FindBy(id = "email")
     private WebElement emailInput;
 
-    @FindBy(id = "person-0")
+    @FindBy(xpath = "//*[@id='person-0']")
     private WebElement individualAccount;
 
     @FindBy(id = "person-1")
@@ -35,7 +36,7 @@ public class RegistrationPage extends BasePage{
     private WebElement cityInput;
 
     @FindBy(id = "state")
-    private WebElement stateInput;
+    private WebElement countyInput;
 
     @FindBy(id = "password")
     private WebElement passwordInput;
@@ -43,22 +44,28 @@ public class RegistrationPage extends BasePage{
     @FindBy(id = "cpassword")
     private WebElement confirmPasswordInput;
 
-    @FindBy(xpath = "//form[@class='buttons']/a")
+    @FindBy(xpath = "//*[@class='buttons']/a")
     private WebElement registrationButton;
 
+    @FindBy(xpath = "//*[@class='jquery-lightbox-html']//h5[contains(text(), 'Actiune nereusita!')]")
+    private WebElement registrationError;
+
+    @FindBy(xpath = "/html/body/div[1]/div/a[contains(text(), 'Am inteles!')]")
+    WebElement dismissCookies;
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void register(String lastName, String firstName, String phoneNumber, String email,
+    public void register(String lastname, String firstname, String phone, String email,
                          String address, String city, String county,
-                         String password, String confirmPassword ) {
+                         String password, String confirmPassword) {
         waitUntilElementVisible(pageIdentifier);
-        this.enterLastName(lastName);
-        this.enterFirstName(firstName);
-        this.enterPhoneNumber(phoneNumber);
+        this.dismissCookieMessage();
+        this.enterLastName(lastname);
+        this.enterFirstName(firstname);
+        this.enterPhoneNumber(phone);
         this.enterEmail(email);
         this.clickOnIndividualAccount();
         this.enterAddress(address);
@@ -78,23 +85,23 @@ public class RegistrationPage extends BasePage{
 
     public void enterFirstName(String firstName) {
         waitUntilElementVisible(firstNameInput);
-        System.out.println("Enter lastName: " + firstName);
-        lastNameInput.clear();
-        lastNameInput.sendKeys(firstName);
+        System.out.println("Enter firstname: " + firstName);
+        firstNameInput.clear();
+        firstNameInput.sendKeys(firstName);
     }
 
-    public void enterPhoneNumber(String phoneNumber) {
+    public void enterPhoneNumber(String phone) {
         waitUntilElementVisible(phoneInput);
-        System.out.println("Enter phone number: " + phoneNumber);
+        System.out.println("Enter phone number: " + phone);
         phoneInput.clear();
-        phoneInput.sendKeys(phoneNumber);
+        phoneInput.sendKeys(phone);
     }
 
     public void enterEmail(String email) {
         waitUntilElementVisible(emailInput);
-        System.out.println("Enter phone number: " + email);
-        phoneInput.clear();
-        phoneInput.sendKeys(email);
+        System.out.println("Enter email: " + email);
+        emailInput.clear();
+        emailInput.sendKeys(email);
     }
 
     public void clickOnIndividualAccount() {
@@ -118,10 +125,10 @@ public class RegistrationPage extends BasePage{
     }
 
     public void enterCounty(String county) {
-        waitUntilElementVisible(stateInput);
-        System.out.println("Enter city: " + county);
-        cityInput.clear();
-        cityInput.sendKeys(county);
+        waitUntilElementVisible(countyInput);
+        System.out.println("Enter county: " + county);
+        countyInput.clear();
+        countyInput.sendKeys(county);
     }
 
     public void enterPassword(String password) {
@@ -144,6 +151,88 @@ public class RegistrationPage extends BasePage{
         registrationButton.click();
     }
 
+    public boolean verifyRegistrationSuccessful(String firstname, String lastname) {
+        String xpath = "//p[contains(text(), 'Esti logat ca " + firstname + " " + lastname + "')]";
+        WebElement welcomeMessage = waitUntilElementVisible(By.xpath(xpath));
+        System.out.println("Welcome message is displayed: " + welcomeMessage.getText());
+        return welcomeMessage.isDisplayed();
+    }
+
+    public boolean successfulLandingURL() {
+        String registrationSuccessfulURL = "https:/www.digitalvision.ro/contul-meu";
+        return registrationSuccessfulURL.equals(driver.getCurrentUrl());
+    }
+
+    public String getRegistrationError() {
+        waitUntilElementVisible(registrationError);
+        return registrationError.getText();
+    }
+
+    public void dismissCookieMessage() {
+        waitUntilElementVisible(dismissCookies);
+        dismissCookies.click();
+    }
+
+//    Validate that all fields have the required attribute
+    public boolean verifyLastnameIsRequired() {
+        String required = lastNameInput.getAttribute("required");
+        System.out.println("Field: " + lastNameInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyFirstnameIsRequired() {
+        String required = firstNameInput.getAttribute("required");
+        System.out.println("Field: " + firstNameInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyPhoneNumberIsRequired() {
+        String required = phoneInput.getAttribute("required");
+        System.out.println("Field: " + phoneInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyEmailIsRequired() {
+        String required = emailInput.getAttribute("required");
+        System.out.println("Field: " + emailInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyAddressIsRequired() {
+        String required = addressInput.getAttribute("required");
+        System.out.println("Field: " + addressInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyCityIsRequired() {
+        String required = cityInput.getAttribute("required");
+        System.out.println("Field: " + cityInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyCountyIsRequired() {
+        String required = countyInput.getAttribute("required");
+        System.out.println("Field: " + countyInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyPasswordIsRequired() {
+        String required = passwordInput.getAttribute("required");
+        System.out.println("Field: " + passwordInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+    public boolean verifyConfirmPasswordIsRequired() {
+        String required = confirmPasswordInput.getAttribute("required");
+        System.out.println("Field: " + confirmPasswordInput.getAccessibleName() + " => required attribute value: " + required);
+        return required.equals("true");
+    }
+
+//    Verify email format validation field
+
+
 
 }
+
+
 

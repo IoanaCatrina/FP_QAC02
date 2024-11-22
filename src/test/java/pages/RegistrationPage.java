@@ -173,7 +173,7 @@ public class RegistrationPage extends BasePage {
         dismissCookies.click();
     }
 
-//    Validate that all fields have the required attribute
+    //    Validate that all fields have the required attribute
     public boolean verifyLastnameIsRequired() {
         String required = lastNameInput.getAttribute("required");
         System.out.println("Field: " + lastNameInput.getAccessibleName() + " => required attribute value: " + required);
@@ -228,9 +228,11 @@ public class RegistrationPage extends BasePage {
         return required.equals("true");
     }
 
-//    Verify email format validation field
-
-
+    //    Verify email format validation field
+    public boolean verifyEmailFormatValidation(String registerError) {
+        String validationMessage = emailInput.getAttribute("validationMessage");
+        return registerError.equals(validationMessage);
+    }
 
 }
 

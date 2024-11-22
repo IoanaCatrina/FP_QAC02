@@ -57,5 +57,22 @@ public class RegistrationTest extends BaseTest {
         Assert.assertTrue(registrationPage.verifyConfirmPasswordIsRequired());
     }
 
+    @Test(dataProvider = "emailFormatDataProvider", dataProviderClass = dataProviders.RegistrationDataProvider.class)
+    public void verifyEmailFormat(RegistrationModel registrationModel) {
+        setUP();
+        navigateToURL("cont-nou");
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        System.out.println(registrationModel);
+
+        RegistrationDetailsModel registrationForm = registrationModel.getRegistrationDetailsModel();
+
+        registrationPage.register(registrationForm.getLastname(), registrationForm.getFirstname(),
+                registrationForm.getPhone(), registrationForm.getEmail(),
+                registrationForm.getAddress(), registrationForm.getCity(), registrationForm.getCounty(),
+                registrationForm.getPassword(), registrationForm.getConfirmPassword());
+        System.out.println("Verify email format");
+        Assert.assertTrue(registrationPage.verifyEmailFormatValidation(registrationModel.getRegisterError()));
+    }
+
 
 }

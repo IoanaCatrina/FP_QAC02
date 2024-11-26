@@ -1,7 +1,6 @@
 package tests;
-
-import objectModels.AccountModel;
-import objectModels.LoginModel;
+import POJO.AccountModel;
+import POJO.LoginModel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -9,11 +8,10 @@ import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
 
-    @Test(dataProvider = "loginDataProvider", dataProviderClass = dataProviders.LoginDataProvider.class)
+    @Test(dataProvider = "loginDataProvider", dataProviderClass = data.LoginDataProvider.class)
     public void loginTest(LoginModel loginModel) {
         loginWithLoginModel(loginModel);
     }
-
     protected void loginWithLoginModel(LoginModel loginModel) {
         setUP();
         driver.navigate().to(baseURL);

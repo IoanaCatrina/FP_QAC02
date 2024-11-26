@@ -1,7 +1,7 @@
-package dataProviders;
+package data;
 
 import com.opencsv.exceptions.CsvException;
-import objectModels.RegistrationModel;
+import POJO.RegistrationModel;
 import org.testng.annotations.DataProvider;
 import utils.CSVUtils;
 import utils.DatabaseUtils;
@@ -49,7 +49,7 @@ public class RegistrationDataProvider {
     public Iterator<Object[]> emailFormatDataProvider() throws IOException, CsvException {
         Collection<Object[]> dp = new ArrayList<>();
 
-        List<String[]> csvData = CSVUtils.readCSV("src/test/resources/testData/registrationEmailFormatValidationTest.csv");
+        List<String[]> csvData = CSVUtils.readCSV("src/test/resources/testData/registrationEmailFormatValidationTestData.csv");
 
         int lastnameIndex = 0, firstnameIndex = 1, phoneIndex = 2, emailIndex = 3,
                 addressIndex = 4, cityIndex = 5, countyIndex = 6, passwordIndex = 7, confirmPasswordIndex = 8, registerErrorIndex = 9;

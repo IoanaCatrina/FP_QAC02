@@ -1,4 +1,4 @@
-package objectModels;
+package POJO;
 
 public class LoginModel {
     private AccountModel account;

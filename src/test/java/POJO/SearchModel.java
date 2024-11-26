@@ -1,12 +1,12 @@
-package objectModels;
+package POJO;
 
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 public class SearchModel {
 
     private String searchPhrase;
+
+    public SearchModel() {
+    }
 
     public SearchModel(String searchPhrase) {
         this.searchPhrase = searchPhrase;
@@ -16,7 +16,6 @@ public class SearchModel {
         return searchPhrase;
     }
 
-    @XmlElement
     public void setSearchPhrase(String searchPhrase) {
         this.searchPhrase = searchPhrase;
     }

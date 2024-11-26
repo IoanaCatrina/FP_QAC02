@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import java.util.Arrays;
+import java.util.List;
 
 public class RegistrationPage extends BasePage {
 
@@ -174,58 +176,20 @@ public class RegistrationPage extends BasePage {
     }
 
     //    Validate that all fields have the required attribute
-    public boolean verifyLastnameIsRequired() {
-        String required = lastNameInput.getAttribute("required");
-        System.out.println("Field: " + lastNameInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
+    private boolean verifyElementIsRequired(WebElement element) {
+        System.out.println("Field: " + element.getAccessibleName() + " => required attribute value: " + element.getAttribute("required"));
+        return element.getAttribute("required").equals("true");
     }
 
-    public boolean verifyFirstnameIsRequired() {
-        String required = firstNameInput.getAttribute("required");
-        System.out.println("Field: " + firstNameInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyPhoneNumberIsRequired() {
-        String required = phoneInput.getAttribute("required");
-        System.out.println("Field: " + phoneInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyEmailIsRequired() {
-        String required = emailInput.getAttribute("required");
-        System.out.println("Field: " + emailInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyAddressIsRequired() {
-        String required = addressInput.getAttribute("required");
-        System.out.println("Field: " + addressInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyCityIsRequired() {
-        String required = cityInput.getAttribute("required");
-        System.out.println("Field: " + cityInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyCountyIsRequired() {
-        String required = countyInput.getAttribute("required");
-        System.out.println("Field: " + countyInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyPasswordIsRequired() {
-        String required = passwordInput.getAttribute("required");
-        System.out.println("Field: " + passwordInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
-    }
-
-    public boolean verifyConfirmPasswordIsRequired() {
-        String required = confirmPasswordInput.getAttribute("required");
-        System.out.println("Field: " + confirmPasswordInput.getAccessibleName() + " => required attribute value: " + required);
-        return required.equals("true");
+    public boolean verifyElementsAreRequired() {
+        List<WebElement> requiredFields = Arrays.asList(lastNameInput, firstNameInput, phoneInput, emailInput,
+                addressInput, cityInput, countyInput, passwordInput, confirmPasswordInput);
+        for (WebElement element : requiredFields) {
+           if (!verifyElementIsRequired (element)) {
+               return false;
+           }
+        }
+        return true;
     }
 
     //    Verify email format validation field
@@ -233,7 +197,6 @@ public class RegistrationPage extends BasePage {
         String validationMessage = emailInput.getAttribute("validationMessage");
         return registerError.equals(validationMessage);
     }
-
 }
 
 

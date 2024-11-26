@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class SearchPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='quick-search']/form/input")
@@ -12,6 +14,9 @@ public class SearchPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='quick-search']/form/a")
     private WebElement searchButton;
+
+    @FindBy(xpath = "//*[@class='products-list']")
+    private List<WebElement> searchResults;
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -22,7 +27,6 @@ public class SearchPage extends BasePage {
         this.searchBoxIsDisplayed();
         this.enterSearchPhrase(searchPhrase);
         this.submit();
-
     }
 
     public void searchBoxIsDisplayed() {
@@ -42,6 +46,18 @@ public class SearchPage extends BasePage {
         System.out.println("Click on search button");
         searchButton.click();
     }
+
+    public boolean verifyValidSearchResults(String searchPhrase) {
+
+        for (WebElement element : searchResults) {
+            String resultText = element.getText().toLowerCase();
+            if (!resultText.contains(searchPhrase.toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
 }

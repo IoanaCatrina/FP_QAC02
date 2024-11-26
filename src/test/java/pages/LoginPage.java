@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class LoginPage extends BasePage {
-
     @FindBy(id = "user-account")
     private WebElement authenticationHoverButton;
 

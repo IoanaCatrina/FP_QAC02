@@ -10,13 +10,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <xmlSuite>runSuites/runSuitesWithParams.xml</xmlSuite>
+    <xmlSuite>runSuites/regression_run.xml</xmlSuite>
     <extentReportVersion>5.1.2</extentReportVersion>
-    <junitVersion>4.13.2</junitVersion>
     <testNGVersion>7.10.1</testNGVersion>
     <commonIOVersion>2.17.0</commonIOVersion>
     <seleniumVersion>4.23.1</seleniumVersion>
-    <lombokVersion>1.18.34</lombokVersion>
     <jacksonDatabind>2.17.2</jacksonDatabind>
     <openCSVVersion>5.9</openCSVVersion>
     <glassfishVersion>4.0.5</glassfishVersion>
@@ -24,105 +22,77 @@
     <javaxXML>2.3.1</javaxXML>
     <jaxbImpl>4.0.5</jaxbImpl>
     <mySQLConnector>8.0.33</mySQLConnector>
-    <restAssuredVersion>5.5.0</restAssuredVersion>
 
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junitVersion}</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testNGVersion}</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>${commonIOVersion}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${seleniumVersion}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombokVersion}</version>
-      <scope>provided</scope>
-    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>${jacksonDatabind}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
       <artifactId>jaxb-runtime</artifactId>
       <version>${glassfishVersion}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
       <version>${jakartaXMLBind}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
     <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
       <version>${javaxXML}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
+
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
       <version>${jaxbImpl}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+
     <dependency>
       <groupId>com.opencsv</groupId>
       <artifactId>opencsv</artifactId>
       <version>${openCSVVersion}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>${mySQLConnector}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
     <dependency>
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
       <version>${extentReportVersion}</version>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>${restAssuredVersion}</version>
-      <scope>test</scope>
-    </dependency>
-
 
   </dependencies>
 

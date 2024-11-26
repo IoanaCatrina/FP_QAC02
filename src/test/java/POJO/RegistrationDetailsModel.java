@@ -1,4 +1,4 @@
-package objectModels;
+package POJO;
 
 public class RegistrationDetailsModel {
     private String lastname;

@@ -1,7 +1,7 @@
-package dataProviders;
+package data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import objectModels.LoginModel;
+import POJO.LoginModel;
 import org.testng.annotations.DataProvider;
 
 import java.io.File;

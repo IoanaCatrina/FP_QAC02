@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests">
+    <test thread-count="5" name="DigitalVision-automation-project">
+        <classes>
+            <class name="tests.LoginTest">
+                <methods>
+                    <include name="loginTestValid"/>
+                    <include name="loginTestInvalid"/>
+                </methods>
+            </class> <!-- tests.LoginTest -->
+        </classes>
+    </test> <!-- DigitalVision-automation-project -->
+</suite> <!-- Default Suite -->

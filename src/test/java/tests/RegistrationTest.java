@@ -1,14 +1,14 @@
 package tests;
 
-import objectModels.RegistrationModel;
-import objectModels.RegistrationDetailsModel;
+import POJO.RegistrationModel;
+import POJO.RegistrationDetailsModel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RegistrationPage;
 
 public class RegistrationTest extends BaseTest {
 
-    @Test(dataProvider = "registrationDataProvider", dataProviderClass = dataProviders.RegistrationDataProvider.class)
+    @Test(dataProvider = "registrationDataProvider", dataProviderClass = data.RegistrationDataProvider.class)
     public void registrationTest(RegistrationModel registrationModel) {
         registerWithRegisterModel(registrationModel);
     }
@@ -43,21 +43,11 @@ public class RegistrationTest extends BaseTest {
         navigateToURL("cont-nou");
 
         RegistrationPage registrationPage = new RegistrationPage(driver);
-
         System.out.println("Verify that required attribute is present");
-
-        Assert.assertTrue(registrationPage.verifyLastnameIsRequired());
-        Assert.assertTrue(registrationPage.verifyFirstnameIsRequired());
-        Assert.assertTrue(registrationPage.verifyPhoneNumberIsRequired());
-        Assert.assertTrue(registrationPage.verifyEmailIsRequired());
-        Assert.assertTrue(registrationPage.verifyAddressIsRequired());
-        Assert.assertTrue(registrationPage.verifyCityIsRequired());
-        Assert.assertTrue(registrationPage.verifyCountyIsRequired());
-        Assert.assertTrue(registrationPage.verifyPasswordIsRequired());
-        Assert.assertTrue(registrationPage.verifyConfirmPasswordIsRequired());
+       Assert.assertTrue(registrationPage.verifyElementsAreRequired());
     }
 
-    @Test(dataProvider = "emailFormatDataProvider", dataProviderClass = dataProviders.RegistrationDataProvider.class)
+    @Test(dataProvider = "emailFormatDataProvider", dataProviderClass = data.RegistrationDataProvider.class)
     public void verifyEmailFormat(RegistrationModel registrationModel) {
         setUP();
         navigateToURL("cont-nou");

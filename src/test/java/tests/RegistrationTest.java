@@ -44,7 +44,7 @@ public class RegistrationTest extends BaseTest {
 
         RegistrationPage registrationPage = new RegistrationPage(driver);
         System.out.println("Verify that required attribute is present");
-       Assert.assertTrue(registrationPage.verifyElementsAreRequired());
+        Assert.assertTrue(registrationPage.verifyElementsAreRequired());
     }
 
     @Test(dataProvider = "emailFormatDataProvider", dataProviderClass = data.RegistrationDataProvider.class)

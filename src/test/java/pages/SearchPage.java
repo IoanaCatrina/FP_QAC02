@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,9 @@ public class SearchPage extends BasePage {
 
     @FindBy(xpath = "//*[@class='products-list']")
     private List<WebElement> searchResults;
+
+    @FindBy(xpath = "//*[@id='content']//p[contains(text(), 'Ne pare rau! Aceasta cautare nu a intors niciun rezultat!')]")
+    private WebElement noResultsMessage;
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -48,7 +52,6 @@ public class SearchPage extends BasePage {
     }
 
     public boolean verifyValidSearchResults(String searchPhrase) {
-
         for (WebElement element : searchResults) {
             String resultText = element.getText().toLowerCase();
             if (!resultText.contains(searchPhrase.toLowerCase())) {
@@ -58,6 +61,20 @@ public class SearchPage extends BasePage {
         return true;
     }
 
-
+    public boolean verifyNegativeSearchMessage(String searchPhrase) {
+        String defaultURL = "https://digitalvision.ro/";
+        if (searchPhrase.isEmpty()) {
+            String currentURL = driver.getCurrentUrl();
+            defaultURL.equals(currentURL);
+        } else {
+            try {
+                System.out.println("No results message is displayed: " + noResultsMessage.getText());
+                noResultsMessage.isDisplayed();
+            } catch (NoSuchElementException e) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

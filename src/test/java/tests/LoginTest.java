@@ -12,7 +12,8 @@ public class LoginTest extends BaseTest {
     public void loginTest(LoginModel loginModel) {
         loginWithLoginModel(loginModel);
     }
-    protected void loginWithLoginModel(LoginModel loginModel) {
+
+    private void loginWithLoginModel(LoginModel loginModel) {
         setUP();
         driver.navigate().to(baseURL);
 

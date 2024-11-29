@@ -44,7 +44,6 @@ public class RegistrationDataProvider {
     }
 
 // DataProvider for validating email format for registration page
-
     @DataProvider(name = "emailFormatDataProvider")
     public Iterator<Object[]> emailFormatDataProvider() throws IOException, CsvException {
         Collection<Object[]> dp = new ArrayList<>();

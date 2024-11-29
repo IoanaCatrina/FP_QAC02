@@ -1,14 +1,6 @@
 [
   {
     "account": {
-      "email": "ioanacorinaoancea@gmail.com",
-      "password": "SnoopyDog12!"
-    },
-    "loginError": "",
-    "validationMessage": ""
-  },
-  {
-    "account": {
       "email": "myemail@email.com",
       "password": "Aasdfgh23!"
     },

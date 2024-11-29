@@ -12,10 +12,18 @@ import java.util.Iterator;
 
 public class LoginDataProvider {
 
-    @DataProvider(name = "loginDataProvider")
-    public Iterator<Object[]> loginDataProvider() throws IOException {
+    @DataProvider(name = "loginValidDataProvider")
+    public Object[][] loginValidDataProvider() {
+        return new Object[][]{
+//                      username, password
+                {"ioanacorinaoancea@gmail.com", "SnoopyDog12!"}
+        };
+    }
+
+    @DataProvider(name = "loginInvalidDataProvider")
+    public Iterator<Object[]> loginInvalidDataProvider() throws IOException {
         Collection<Object[]> loginDP = new ArrayList<>();
-        File jsonFile = new File("src/test/resources/testData/loginTestDataInput.json");
+        File jsonFile = new File("src/test/resources/testData/loginInvalidTestData.json");
 
         ObjectMapper objectMapper = new ObjectMapper();
         LoginModel[] loginModelList = objectMapper.readValue(jsonFile, LoginModel[].class);

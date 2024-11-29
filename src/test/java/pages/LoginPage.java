@@ -31,6 +31,10 @@ public class LoginPage extends BasePage {
         actions = new Actions(driver);
     }
 
+    public WebElement getAuthenticationHoverButton() {
+        return authenticationHoverButton;
+    }
+
     public void login(String email, String password) {
         this.authenticationButtonDisplayed();
         this.moveToAuthenticationButton();

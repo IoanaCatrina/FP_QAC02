@@ -1,5 +1,7 @@
 package POJO;
 
+import jakarta.xml.bind.annotation.XmlElement;
+
 public class RegistrationDetailsModel {
     private String lastname;
     private String firstname;
@@ -31,6 +33,7 @@ public class RegistrationDetailsModel {
         return lastname;
     }
 
+    @XmlElement
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
@@ -39,6 +42,7 @@ public class RegistrationDetailsModel {
         return firstname;
     }
 
+    @XmlElement
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
@@ -47,6 +51,7 @@ public class RegistrationDetailsModel {
         return phone;
     }
 
+    @XmlElement
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -55,6 +60,7 @@ public class RegistrationDetailsModel {
         return email;
     }
 
+    @XmlElement
     public void setEmail(String email) {
         this.email = email;
     }
@@ -63,6 +69,7 @@ public class RegistrationDetailsModel {
         return address;
     }
 
+    @XmlElement
     public void setAddress(String address) {
         this.address = address;
     }
@@ -71,6 +78,7 @@ public class RegistrationDetailsModel {
         return city;
     }
 
+    @XmlElement
     public void setCity(String city) {
         this.city = city;
     }
@@ -79,6 +87,7 @@ public class RegistrationDetailsModel {
         return county;
     }
 
+    @XmlElement
     public void setCounty(String county) {
         this.county = county;
     }
@@ -87,6 +96,7 @@ public class RegistrationDetailsModel {
         return password;
     }
 
+    @XmlElement
     public void setPassword(String password) {
         this.password = password;
     }
@@ -95,6 +105,7 @@ public class RegistrationDetailsModel {
         return confirmPassword;
     }
 
+    @XmlElement
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }

@@ -1,5 +1,9 @@
 package POJO;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class RegistrationModel {
     private RegistrationDetailsModel registrationDetailsModel;
     private String registerError;
@@ -20,6 +24,7 @@ public class RegistrationModel {
         return registrationDetailsModel;
     }
 
+    @XmlElement
     public void setRegistrationDetailsModel(RegistrationDetailsModel registrationDetailsModel) {
         this.registrationDetailsModel = registrationDetailsModel;
     }
@@ -28,6 +33,7 @@ public class RegistrationModel {
         return registerError;
     }
 
+    @XmlElement
     public void setRegisterError(String registerError) {
         this.registerError = registerError;
     }

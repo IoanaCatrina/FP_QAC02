@@ -8,33 +8,21 @@ import pages.RegistrationPage;
 
 public class RegistrationTest extends BaseTest {
 
-    @Test(dataProvider = "registrationDataProvider", dataProviderClass = data.RegistrationDataProvider.class)
-    public void registrationTest(RegistrationModel registrationModel) {
+    @Test(dataProvider = "registrationValidDataProvider", dataProviderClass = data.RegistrationDataProvider.class)
+    public void registrationValidTest(RegistrationModel registrationModel) {
         registerWithRegisterModel(registrationModel);
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        System.out.println("Verify registration successful");
+            Assert.assertTrue(registrationPage.successfulLandingURL());
+            Assert.assertTrue(registrationPage.verifyRegistrationSuccessful(registrationModel.getRegistrationDetailsModel().getFirstname(), registrationModel.getRegistrationDetailsModel().getLastname()));
     }
 
-    private void registerWithRegisterModel(RegistrationModel registrationModel) {
-        setUP();
-        navigateToURL("cont-nou");
-
+    @Test(dataProvider = "registrationNegativeDataProvider", dataProviderClass = data.RegistrationDataProvider.class)
+    public void registrationNegativeTest(RegistrationModel registrationModel) {
+        registerWithRegisterModel(registrationModel);
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        System.out.println(registrationModel);
-
-        RegistrationDetailsModel registrationForm = registrationModel.getRegistrationDetailsModel();
-
-        registrationPage.register(registrationForm.getLastname(), registrationForm.getFirstname(),
-                registrationForm.getPhone(), registrationForm.getEmail(),
-                registrationForm.getAddress(), registrationForm.getCity(), registrationForm.getCounty(),
-                registrationForm.getPassword(), registrationForm.getConfirmPassword());
-
-        if (registrationModel.getRegisterError().isEmpty()) {
-            System.out.println("Verify registration successful");
-            Assert.assertTrue(registrationPage.successfulLandingURL());
-            Assert.assertTrue(registrationPage.verifyRegistrationSuccessful(registrationForm.getFirstname(), registrationForm.getLastname()));
-        } else {
-            System.out.println("Verify registration failed message");
-            Assert.assertEquals(registrationPage.getRegistrationError(), registrationModel.getRegisterError());
-        }
+        System.out.println("Verify registration failed message");
+        Assert.assertEquals(registrationPage.getRegistrationError(), registrationModel.getRegisterError());
     }
 
     @Test
@@ -64,5 +52,16 @@ public class RegistrationTest extends BaseTest {
         Assert.assertTrue(registrationPage.verifyEmailFormatValidation(registrationModel.getRegisterError()));
     }
 
+    private void registerWithRegisterModel(RegistrationModel registrationModel) {
+        setUP();
+        navigateToURL("cont-nou");
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        System.out.println(registrationModel);
+        RegistrationDetailsModel registrationForm = registrationModel.getRegistrationDetailsModel();
+        registrationPage.register(registrationForm.getLastname(), registrationForm.getFirstname(),
+                registrationForm.getPhone(), registrationForm.getEmail(),
+                registrationForm.getAddress(), registrationForm.getCity(), registrationForm.getCounty(),
+                registrationForm.getPassword(), registrationForm.getConfirmPassword());
+    }
 
 }

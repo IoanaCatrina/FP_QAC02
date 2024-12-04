@@ -1,16 +1,54 @@
 package tests;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import utils.ConfigUtils;
 import utils.ConstantUtils;
 import utils.BrowserUtils;
+
+import java.lang.reflect.Method;
 
 public class BaseTest {
 
     protected WebDriver driver;
     protected String baseURL;
+    protected static ExtentReports extent;
+    protected ExtentTest test;
+
+    @BeforeSuite
+    public void setUpExtentReport() {
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("target/ExtentReports/report.html");
+        sparkReporter.config().setDocumentTitle("Test Report");
+        sparkReporter.config().setReportName("Test results");
+        extent = new ExtentReports();
+        extent.attachReporter(sparkReporter);
+    }
+
+    @BeforeMethod
+    public void startTest(Method method) {
+        test = extent.createTest(method.getName());
+    }
+
+    @AfterMethod
+    public void getResult(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            test.log(Status.FAIL, result.getThrowable());
+        } else if (result.getStatus() == ITestResult.SUCCESS) {
+            test.log(Status.PASS, result.getTestName());
+        } else {
+            test.log(Status.SKIP, result.getTestName());
+        }
+    }
+
+    @AfterSuite
+    public void flushExtentReport() {
+        extent.flush();
+    }
 
     public void getBrowser(String browserName) {
         driver = BrowserUtils.getDriver(browserName);

@@ -5,7 +5,6 @@ public class LoginModel {
     private String loginError;
     private String validationMessage;
 
-
     public LoginModel() {
     }
 

@@ -5,7 +5,7 @@
         <classes>
             <class name="tests.LoginTest">
                 <methods>
-                    <include name="loginTestValid"/>
+                    <include name="loginPositiveTest"/>
                 </methods>
             </class> <!-- tests.LoginTest -->
         </classes>

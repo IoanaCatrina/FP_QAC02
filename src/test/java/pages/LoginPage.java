@@ -20,9 +20,6 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//form[@class='cf']/a")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//*[@id=\"account-logged\"]/p[contains(text(), 'Bine ati venit!')]")
-    private WebElement welcomeMessage;
-
     Actions actions;
 
     public LoginPage(WebDriver driver) {
@@ -52,34 +49,31 @@ public class LoginPage extends BasePage {
         actions.moveToElement(authenticationHoverButton).perform();
     }
 
-    public void enterEmail(String email) {
+    private void enterEmail(String email) {
         waitUntilElementVisible(emailInput);
         System.out.println("Enter email address: " + email);
         emailInput.clear();
         emailInput.sendKeys(email);
     }
 
-    public void enterPassword(String password) {
+    private void enterPassword(String password) {
         waitUntilElementVisible(emailInput);
         System.out.println("Enter password: " + password);
         passwordInput.clear();
         passwordInput.sendKeys(password);
     }
 
-    public void submit() {
+    private void submit() {
         waitUntilElementVisible(loginButton);
         System.out.println("Click on Login button");
         loginButton.click();
     }
 
     public boolean verifyLoginSuccessful() {
-        moveToAuthenticationButton();
-        waitUntilElementVisible(welcomeMessage);
-        System.out.println("Welcome message is displayed: " + welcomeMessage.getText());
-        return welcomeMessage.isDisplayed();
+        return authenticationHoverButton.getText().contains("Contul meu");
     }
 
-    public String getErrorMessage() {
+    private String getErrorMessage() {
         return driver.getCurrentUrl();
     }
 

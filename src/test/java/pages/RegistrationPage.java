@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -78,76 +79,76 @@ public class RegistrationPage extends BasePage {
         this.submit();
     }
 
-    public void enterLastName(String lastName) {
+    private void enterLastName(String lastName) {
         waitUntilElementVisible(lastNameInput);
         System.out.println("Enter lastName: " + lastName);
         lastNameInput.clear();
         lastNameInput.sendKeys(lastName);
     }
 
-    public void enterFirstName(String firstName) {
+    private void enterFirstName(String firstName) {
         waitUntilElementVisible(firstNameInput);
         System.out.println("Enter firstname: " + firstName);
         firstNameInput.clear();
         firstNameInput.sendKeys(firstName);
     }
 
-    public void enterPhoneNumber(String phone) {
+    private void enterPhoneNumber(String phone) {
         waitUntilElementVisible(phoneInput);
         System.out.println("Enter phone number: " + phone);
         phoneInput.clear();
         phoneInput.sendKeys(phone);
     }
 
-    public void enterEmail(String email) {
+    private void enterEmail(String email) {
         waitUntilElementVisible(emailInput);
         System.out.println("Enter email: " + email);
         emailInput.clear();
         emailInput.sendKeys(email);
     }
 
-    public void clickOnIndividualAccount() {
+    private void clickOnIndividualAccount() {
         waitUntilElementVisible(individualAccount);
         System.out.println("Choose individual account");
         individualAccount.click();
     }
 
-    public void enterAddress(String address) {
+    private void enterAddress(String address) {
         waitUntilElementVisible(addressInput);
         System.out.println("Enter your address: " + address);
         addressInput.clear();
         addressInput.sendKeys(address);
     }
 
-    public void enterCity(String city) {
+    private void enterCity(String city) {
         waitUntilElementVisible(cityInput);
         System.out.println("Enter city: " + city);
         cityInput.clear();
         cityInput.sendKeys(city);
     }
 
-    public void enterCounty(String county) {
+    private void enterCounty(String county) {
         waitUntilElementVisible(countyInput);
         System.out.println("Enter county: " + county);
         countyInput.clear();
         countyInput.sendKeys(county);
     }
 
-    public void enterPassword(String password) {
+    private void enterPassword(String password) {
         waitUntilElementVisible(passwordInput);
         System.out.println("Enter password: " + password);
         passwordInput.clear();
         passwordInput.sendKeys(password);
     }
 
-    public void enterConfirmPassword(String confirmPassword) {
+    private void enterConfirmPassword(String confirmPassword) {
         waitUntilElementVisible(confirmPasswordInput);
         System.out.println("Enter confirm password: " + confirmPassword);
         confirmPasswordInput.clear();
         confirmPasswordInput.sendKeys(confirmPassword);
     }
 
-    public void submit() {
+    private void submit() {
         waitUntilElementVisible(registrationButton);
         System.out.println("Click on registration button");
         registrationButton.click();
@@ -175,7 +176,6 @@ public class RegistrationPage extends BasePage {
         dismissCookies.click();
     }
 
-    //    Validate that all fields have the required attribute
     private boolean verifyElementIsRequired(WebElement element) {
         System.out.println("Field: " + element.getAccessibleName() + " => required attribute value: " + element.getAttribute("required"));
         return element.getAttribute("required").equals("true");
@@ -185,14 +185,13 @@ public class RegistrationPage extends BasePage {
         List<WebElement> requiredFields = Arrays.asList(lastNameInput, firstNameInput, phoneInput, emailInput,
                 addressInput, cityInput, countyInput, passwordInput, confirmPasswordInput);
         for (WebElement element : requiredFields) {
-           if (!verifyElementIsRequired (element)) {
-               return false;
-           }
+            if (!verifyElementIsRequired(element)) {
+                return false;
+            }
         }
         return true;
     }
 
-    //    Verify email format validation field
     public boolean verifyEmailFormatValidation(String registerError) {
         String validationMessage = emailInput.getAttribute("validationMessage");
         return registerError.equals(validationMessage);

@@ -1,11 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 
 import java.util.List;
 
@@ -14,45 +14,28 @@ public class AddToCartPage extends BasePage {
     @FindBy(xpath = "//*[@class='products-list']")
     private List<WebElement> productsList;
 
-    @FindBy(id = "quick-cart")
-    private WebElement shoppingCart;
-
-    @FindBy(id = "cart-count")
-    private WebElement cartCount;
-
     @FindBy(xpath = "//*[@class='heading-holder']/h1/strong[contains(text(),'COMANDA RAPIDA ')]")
     private WebElement shoppingCartPageName;
 
     @FindBy(xpath = "//*[@id='products-cart-list']//h2/a")
     private WebElement productAddedToCart;
 
+    String productToAddToCart;
+
+    public String getProductToAddToCart() {
+        return productToAddToCart;
+    }
+
+    public void setProductToAddToCart(String productToAddToCart) {
+        this.productToAddToCart = productToAddToCart;
+    }
+
     public AddToCartPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void addProductToCart() {
-        WebElement product = getFirstProductFromList();
-        WebElement addToCartButton = product.findElement(By.id("add-to-cart"));
-        System.out.println("Add product to cart");
-        addToCartButton.click();
-    }
-
-    public WebElement getFirstProductFromList() {
-        wait.until(d -> productsList.size() > 0);
-        WebElement firstProductFromList = productsList.get(1);
-        return firstProductFromList;
-    }
-
-    public String getProductTitle() {
-        WebElement product = getFirstProductFromList();
-        WebElement productTitle = product.findElement(By.xpath("//*[@class='title']/a"));
-        System.out.println("Product added to cart: " + productTitle.getText());
-        return productTitle.getText();
-    }
-
-
-    public void shoppingCartPageIsDisplayed() {
+    private void shoppingCartPageIsDisplayed() {
         waitUntilElementVisible(shoppingCartPageName);
         System.out.println("Shopping Cart page is displayed: " + shoppingCartPageName.getText());
         shoppingCartPageName.isDisplayed();
@@ -60,8 +43,21 @@ public class AddToCartPage extends BasePage {
 
     public String getProductAddedToCart() {
         shoppingCartPageIsDisplayed();
-//        waitUntilElementVisible(productAddedToCart);
-        System.out.println("Product in the cart: " + productAddedToCart.getText());
-        return productAddedToCart.getText();
+        try {
+            System.out.println("Product in the cart: " + productAddedToCart.getText());
+            return productAddedToCart.getText();
+        } catch (NoSuchElementException e) {
+            System.out.println("No product found in the cart.");
+            return null;
+        }
+    }
+
+    public void addToCart() {
+        WebElement myProduct = productsList.get(0);
+        WebElement productTitle = myProduct.findElement(By.xpath("//*[@class='title']/a"));
+        System.out.println("Add product to cart: " + productTitle.getText());
+        setProductToAddToCart(productTitle.getText());
+        WebElement addToCartButton = myProduct.findElement(By.id("add-to-cart"));
+        addToCartButton.click();
     }
 }

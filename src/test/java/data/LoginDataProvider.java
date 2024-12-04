@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class LoginDataProvider {
-
     @DataProvider(name = "loginValidDataProvider")
     public Object[][] loginValidDataProvider() {
         return new Object[][]{

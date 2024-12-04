@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LogoutPage extends BasePage{
+public class LogoutPage extends BasePage {
 
     @FindBy(xpath = "//*[@class='user-action']//a[contains(text(), 'Logout')]")
     private WebElement logoutButton;
@@ -17,18 +17,16 @@ public class LogoutPage extends BasePage{
         PageFactory.initElements(driver, this);
     }
 
+    public String verifyLogoutSuccessful() {
+        return loginPage.getAuthenticationHoverButton().getText();
+    }
+
     public void logout() {
-        loginPage.login("ioanacorinaoancea@gmail.com", "SnoopyDog12!");
         loginPage.authenticationButtonDisplayed();
         loginPage.moveToAuthenticationButton();
         System.out.println("Logout button is visible");
         waitUntilElementIsClickable(logoutButton);
         System.out.println("Click Logout button");
         logoutButton.click();
-    }
-
-    public String verifyLogoutSuccessful() {
-        logout();
-        return loginPage.getAuthenticationHoverButton().getText();
     }
 }

@@ -8,7 +8,6 @@ public class RegistrationModel {
     private RegistrationDetailsModel registrationDetailsModel;
     private String registerError;
 
-
     public RegistrationModel() {
     }
 
@@ -47,7 +46,6 @@ public class RegistrationModel {
                 ",\n \t city: " + registrationDetailsModel.getCity() + ",\n \t county: " + registrationDetailsModel.getCounty() +
                 ", \n \t password: " + registrationDetailsModel.getPassword() + ", \n \t confirmPassword: " + registrationDetailsModel.getConfirmPassword() +
                 "\n }, \n registerError: " + registerError + "\n}";
-
     }
 }
 

@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-
 public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "loginValidDataProvider", dataProviderClass = data.LoginDataProvider.class)
@@ -27,7 +26,6 @@ public class LoginTest extends BaseTest {
     private void loginWithLoginModel(LoginModel loginModel) {
         setUP();
         driver.navigate().to(baseURL);
-
         LoginPage loginPage = new LoginPage(driver);
         System.out.println(loginModel);
         AccountModel account = loginModel.getAccount();

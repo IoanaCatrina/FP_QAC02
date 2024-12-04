@@ -1,9 +1,9 @@
 package data;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import POJO.SearchModel;
 import org.testng.annotations.DataProvider;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.Iterator;
 public class SearchDataProvider {
 
     @DataProvider(name = "searchValidDataProvider")
-
     public Iterator<Object[]> searchValidDataProvider() throws IOException {
         Collection<Object[]> searchDP = new ArrayList<>();
         File jsonFile = new File("src/test/resources/testData/searchValidTestData.json");
@@ -23,7 +22,6 @@ public class SearchDataProvider {
 
         for (SearchModel searchModel : searchModels)
             searchDP.add(new Object[]{searchModel});
-
         return searchDP.iterator();
     }
 
@@ -37,7 +35,6 @@ public class SearchDataProvider {
 
         for (SearchModel searchModel : searchModels)
             searchDP.add(new Object[]{searchModel});
-
         return searchDP.iterator();
     }
 }

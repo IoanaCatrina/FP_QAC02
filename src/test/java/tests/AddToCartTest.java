@@ -12,8 +12,7 @@ public class AddToCartTest extends BaseTest {
         navigateToURL("laptop-tablete/laptop-notebook");
 
         AddToCartPage addToCartPage = new AddToCartPage(driver);
-        addToCartPage.addProductToCart();
-        System.out.println("Verify the product added to cart is the same with product from cart");
-        Assert.assertEquals(addToCartPage.getProductTitle(), addToCartPage.getProductAddedToCart());
+        addToCartPage.addToCart();
+        Assert.assertEquals(addToCartPage.getProductAddedToCart(), addToCartPage.getProductToAddToCart());
     }
 }

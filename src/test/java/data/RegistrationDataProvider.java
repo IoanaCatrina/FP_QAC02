@@ -24,20 +24,15 @@ public class RegistrationDataProvider {
     @DataProvider(name = "registrationValidDataProvider")
     public Iterator<Object[]> registrationValidDataProvider() throws JAXBException {
         Collection<Object[]> dp = new ArrayList<>();
-//        here we will map XML to loginModel
         File xmlFile = new File("src/test/resources/testData/registrationValidTestData.xml");
 
         RegistrationModel registrationModel = (RegistrationModel) unMarshalObjectModel(xmlFile, RegistrationModel.class);
-
-//        Adding to data provider
         dp.add(new Object[]{registrationModel});
         return dp.iterator();
     }
 
     private Object unMarshalObjectModel(File f, Class<?>... classesToBeBound) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(classesToBeBound);
-
-//        Loading XML and map based on tags added on LoginModel and AccountModel
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         return unmarshaller.unmarshal(f);
     }
@@ -68,13 +63,11 @@ public class RegistrationDataProvider {
         return dp.iterator();
     }
 
-// DataProvider for validating email format for registration page
     @DataProvider(name = "emailFormatDataProvider")
     public Iterator<Object[]> emailFormatDataProvider() throws IOException, CsvException {
         Collection<Object[]> dp = new ArrayList<>();
 
         List<String[]> csvData = CSVUtils.readCSV("src/test/resources/testData/registrationEmailFormatValidationTestData.csv");
-
         int lastnameIndex = 0, firstnameIndex = 1, phoneIndex = 2, emailIndex = 3,
                 addressIndex = 4, cityIndex = 5, countyIndex = 6, passwordIndex = 7, confirmPasswordIndex = 8, registerErrorIndex = 9;
 
@@ -83,9 +76,7 @@ public class RegistrationDataProvider {
             RegistrationModel registrationModel = new RegistrationModel(line[lastnameIndex], line[firstnameIndex], line[phoneIndex],
                     line[emailIndex], line[addressIndex], line[cityIndex], line[countyIndex],
                     line[passwordIndex], line[confirmPasswordIndex], line[registerErrorIndex]);
-
             dp.add(new Object[]{registrationModel});
-
         }
         return dp.iterator();
     }

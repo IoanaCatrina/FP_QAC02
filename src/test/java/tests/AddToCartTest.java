@@ -7,7 +7,7 @@ import pages.AddToCartPage;
 public class AddToCartTest extends BaseTest {
 
     @Test
-    public void AddToCartTest() {
+    public void addToCartTest() {
         setUP();
         navigateToURL("laptop-tablete/laptop-notebook");
 

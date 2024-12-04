@@ -3,11 +3,31 @@
 <suite name="Smoke Tests">
     <test thread-count="5" name="DigitalVision-automation-project">
         <classes>
+            <class name="tests.RegistrationTest">
+                <methods>
+                    <include name="registrationValidTest"/>
+                </methods>
+            </class>
             <class name="tests.LoginTest">
                 <methods>
                     <include name="loginPositiveTest"/>
                 </methods>
-            </class> <!-- tests.LoginTest -->
+            </class>
+            <class name="tests.LogoutTest">
+                <methods>
+                    <include name="logoutTest"/>
+                </methods>
+            </class>
+            <class name="tests.SearchTest">
+                <methods>
+                    <include name="searchValidTest"/>
+                </methods>
+            </class>
+            <class name="tests.AddToCartTest">
+                <methods>
+                    <include name="addToCartTest"/>
+                </methods>
+            </class>
         </classes>
-    </test> <!-- DigitalVision-automation-project -->
-</suite> <!-- Default Suite -->
+    </test>
+</suite>

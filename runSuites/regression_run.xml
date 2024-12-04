@@ -3,12 +3,11 @@
 <suite name="Regression Tests">
     <test thread-count="5" name="DigitalVision-automation-project">
         <classes>
-            <class name="tests.LoginTest">
-                <methods>
-                    <include name="loginPositiveTest"/>
-                    <include name="loginNegativeTest"/>
-                </methods>
-            </class> <!-- tests.LoginTest -->
-        </classes>
-    </test> <!-- DigitalVision-automation-project -->
-</suite> <!-- Default Suite -->
+            <class name="tests.RegistrationTest"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.LogoutTest"/>
+            <class name="tests.SearchTest"/>
+            <class name="tests.AddToCartTest"/>
+    </classes>
+</test> <!-- DigitalVision-automation-project -->
+        </suite> <!-- Default Suite -->

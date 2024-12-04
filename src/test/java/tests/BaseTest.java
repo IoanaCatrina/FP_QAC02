@@ -37,11 +37,12 @@ public class BaseTest {
     @AfterMethod
     public void getResult(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
+            test.log(Status.FAIL, "Test Failed: " + result.getMethod().getMethodName());
             test.log(Status.FAIL, result.getThrowable());
         } else if (result.getStatus() == ITestResult.SUCCESS) {
-            test.log(Status.PASS, result.getTestName());
+            test.log(Status.PASS, "Test Passed: " + result.getMethod().getMethodName());
         } else {
-            test.log(Status.SKIP, result.getTestName());
+            test.log(Status.SKIP, "Test Skipped: " + result.getMethod().getMethodName());
         }
     }
 

@@ -24,8 +24,7 @@ public class SearchTest extends BaseTest {
         SearchPage searchPage = new SearchPage(driver);
         System.out.println(searchModel);
         searchPage.search(searchModel.getSearchPhrase());
-        System.out.println("Verify invalid Search test");
-        Assert.assertTrue(searchPage.verifyNegativeSearchMessage(searchModel.getSearchPhrase()));
+        System.out.println("Verify error message is present");
+        Assert.assertTrue(searchPage.verifyNegativeSearchMessage(searchModel.getSearchPhrase()), "Verify error message is present");
     }
-
 }

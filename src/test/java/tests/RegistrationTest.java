@@ -63,5 +63,4 @@ public class RegistrationTest extends BaseTest {
                 registrationForm.getAddress(), registrationForm.getCity(), registrationForm.getCounty(),
                 registrationForm.getPassword(), registrationForm.getConfirmPassword());
     }
-
 }

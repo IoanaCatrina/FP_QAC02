@@ -71,6 +71,7 @@ public class SearchPage extends BasePage {
                 System.out.println("No results message is displayed: " + noResultsMessage.getText());
                 noResultsMessage.isDisplayed();
             } catch (NoSuchElementException e) {
+                System.out.println("No error message found");
                 return false;
             }
         }

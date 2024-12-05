@@ -80,5 +80,4 @@ public class RegistrationDataProvider {
         }
         return dp.iterator();
     }
-
 }

@@ -51,10 +51,6 @@ public class BaseTest {
         extent.flush();
     }
 
-    public void getBrowser(String browserName) {
-        driver = BrowserUtils.getDriver(browserName);
-    }
-
     public void getBrowser() {
         String browserName = ConfigUtils.readGenericElementFromConfig(ConstantUtils.DEFAULT_CONFIG_FILE,
                 "browser", "chrome");
